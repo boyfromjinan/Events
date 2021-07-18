@@ -2,6 +2,7 @@
 using Events.Repository.Repository;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,10 @@ namespace Events.EventAPI.Controllers
     public class EventController : ControllerBase
     {
         private readonly IEventRepository _eventRepository;
-        private readonly ILog _logger;
+        private readonly ILogger<EventController> _logger;
 
-        public EventController(IEventRepository eventRepository, ILog logger)
+        public EventController(IEventRepository eventRepository,
+            ILogger<EventController> logger)
         {
             _eventRepository = eventRepository;
             _logger = logger;
@@ -48,7 +50,7 @@ namespace Events.EventAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Error(ex);
+                _logger.LogError(ex, ex.Message);
                 return null;
             }
         }
@@ -63,7 +65,7 @@ namespace Events.EventAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Error(ex);
+                _logger.LogError(ex, ex.Message);
             }
         }
 
@@ -77,7 +79,7 @@ namespace Events.EventAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Error(ex);
+                _logger.LogError(ex, ex.Message);
             }
         }
     }

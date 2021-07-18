@@ -1,5 +1,6 @@
 ﻿using Events.Repository.Models;
 using log4net;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 
@@ -8,11 +9,11 @@ namespace Events.Repository.Repository
     public class EventRepository : IEventRepository
     {
         private readonly EventContext eventContext;
-        private readonly ILog logger;
+        private readonly ILogger<EventRepository> logger;
 
-        public EventRepository(ILog logger, EventContext context)
+        public EventRepository(ILogger<EventRepository> logger)
         {
-            eventContext = context;
+            eventContext = new EventContext();
             this.logger = logger;
         }
 
@@ -26,7 +27,7 @@ namespace Events.Repository.Repository
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.LogError(ex, ex.Message);
                 throw;
             }
         }
@@ -41,7 +42,7 @@ namespace Events.Repository.Repository
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.LogError(ex, ex.Message);
                 throw;
             }
         }
@@ -54,7 +55,7 @@ namespace Events.Repository.Repository
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.LogError(ex, ex.Message);
                 throw;
             }
         }
@@ -67,7 +68,7 @@ namespace Events.Repository.Repository
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.LogError(ex, ex.Message);
                 throw;
             }
         }
@@ -80,7 +81,7 @@ namespace Events.Repository.Repository
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.LogError(ex, ex.Message);
                 throw;
             }
         }
