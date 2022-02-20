@@ -2,9 +2,9 @@
 {
     using Newtonsoft.Json;
 
-    public abstract class CosmosItemBase
+    public abstract class ItemBase
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
 
-    public class Event : CosmosItemBase
+    public class Event : ItemBase
     {
         [JsonProperty("title")]
         public string? Title { get; set; }
